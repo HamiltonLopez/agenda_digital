@@ -2,16 +2,19 @@
 {% block titule %} Añadir Contacto {% endblock %}
 {% block content %} 
 <form action="" method="post" enctype="multipart/form-data">
+  
   {% csrf_token %}
-  {%for campo in formulario %}
   <div class="row">
-    <div class="form-outline col-4 ">             
+  {%for campo in formulario %}
+ 
+    <div class="form-outline col-4 justify-content-center text-center flex-direction-row">             
       <label class="form-label" for="nombre">{{ campo.label }}</label>
    <input class="form-control" type="{{ campo.field.widget.input_type }}" id="nombre" name="{{ campo.name }}" placeholder="{{ campo.label }}" required><br>
    </div>
-  </div>
+  
   <div class="col-12 help-text">{{ campo.errors }}</div>
   {% endfor %}
+</div>
 
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-md-7 mt-5 d-flex justify-content-center align-items-center">
