@@ -1,0 +1,23 @@
+{% extends "header.html" %}
+{% block titule %} Editar Contacto {% endblock %}
+{% block content %} 
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {%for campo in formulario %}
+  <div class="row">
+    <div class="form-outline col-4 ">             
+      <label class="form-label" for="nombre">{{ campo.label }}</label>
+   <input class="form-control" type="{{ campo.field.widget.input_type }}" id="nombre" name="{{ campo.name }}" placeholder="{{ campo.label }} " value="{{ campo.value | default:'' }}" required><br>
+   </div>
+  </div>
+  <div class="col-12 help-text">{{ campo.errors }}</div>
+  {% endfor %}
+
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-7 mt-5 d-flex justify-content-center align-items-center">
+        <button type="submit" name="button" id="button" class="btn btn-success btn-block mb-2">Guardar</button>
+    </div>
+</form>
+
+
+{% endblock %}
