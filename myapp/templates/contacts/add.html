@@ -1,14 +1,36 @@
 {% extends "header.html" %}
 {% block titule %} Añadir Contacto {% endblock %}
 {% block content %} 
+<style>
+  h3{
+    font-weight: bold;
+    
+    color: #C69749;
+  }
+  label{
+    font-weight: bold;
+    color: #ffffff;
+  }
+</style>
+<br>
+<h3 class="text-center">NUEVO CONTACTO</h3>
+<br>
 <form action="" method="post" enctype="multipart/form-data">
   
   {% csrf_token %}
-  <div class="row">
+  <div class="row align-items-center justify-content-center">
   {%for campo in formulario %}
  
-    <div class="form-outline col-4 justify-content-center text-center flex-direction-row">             
-      <label class="form-label" for="nombre">{{ campo.label }}</label>
+    <div class="form-outline col-4 text-aling-left">  
+      {% if forloop.counter == 1 %}
+      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-person"></i></label></div>          
+      {% elif forloop.counter == 2 %}
+      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} </label></div> 
+      {% elif forloop.counter == 3 %}
+      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-telephone"></i></label></div> 
+      {% elif forloop.counter == 4 %}
+      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-envelope-at"></i></label></div>
+      {% endif %}
    <input class="form-control" type="{{ campo.field.widget.input_type }}" id="nombre" name="{{ campo.name }}" placeholder="{{ campo.label }}" required><br>
    </div>
   

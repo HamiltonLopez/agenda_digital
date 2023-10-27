@@ -22,19 +22,16 @@
   font-family: 'Poppins', sans-serif;
 }
 
-header {
-  /*  background-color: rgb(0, 0, 0);*/
-    max-width: 100%;
-    margin: 0px 0px 30px 0px;
-   
-  }
-  
+
+hr{
+    color: #C69749;
+}
   body {
     padding: 0;
     margin: 0;
     max-width: 100%;
     max-height: 100%;
-    /*background-color: black;*/
+    background-color: black;
    
   }
   div[class^="navbar-brand"] {
@@ -48,16 +45,16 @@ header {
   a {
     font-size: 18px;
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-align: center;
   }
   .navbar-nav li a:hover {
-    color: rgb(0, 0, 0);
+    color: #C69749;
     transition: 0.5s;
   }
   .navbar-nav li a:active {
+    color: #C69749;
    
-    transition: 0.5s;
   }
   #logo{
 	  width: 150px;
@@ -74,7 +71,6 @@ header {
     position: relative;
   }
 
-  
   .navbar-nav li a::after {
     content: "";
     position: absolute;
@@ -82,26 +78,20 @@ header {
     left: 0;
     width: 100%;
     height: 2px; /* ajusta el grosor de la barra */
-    background-color: #E51B23; /* ajusta el color de la barra */
+    background-color:#C69749; /* ajusta el color de la barra */
     transform: scaleX(0); /* para ocultar inicialmente la barra */
     transform-origin: left center;
     transition: transform 0.4s ease-in-out;
   }
- /* #navbar{
-    position: fixed;
-    background-color: rgb(0, 0, 0);
-}*/
-.active{
-  color: rgb(255, 255, 255);
-  font-weight: bold;
+
+.active :active{
+  color:#C69749;  
+
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-    color:#E51B23;  
+    color:#C69749;  
  
 }
-
-
-/*///////////////////////*/
 
 span{
     font-weight: bold;
@@ -131,14 +121,14 @@ span{
 						<div class="collapse navbar-collapse row col-12 " id="navbarNav">
 
 							<ul class="navbar-nav row col-12">
-								<li class="text-center nav-item col">
-									<a class="" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+								<li class="text-center nav-item col-1">
+									<a class="active" aria-current="page" href="{% url 'inicio' %}">Inicio <i class="bi bi-house"></i></a>
 								</li>
-								<li class="text-center nav-item col">
-									<a class="" aria-current="page" href="{% url 'lista' %}">Lista</a>
+								<li class="text-center nav-item col-2">
+									<a class="active" aria-current="page" href="{% url 'lista' %}">Contactos <i class="bi bi-person-lines-fill"></i></a>
 								</li>
-								<li class="text-center nav-item col">
-									<a class="" aria-current="page" href="#">Nosotros</a>
+								<li class="text-center nav-item col-1">
+									<a class="active" aria-current="page" href="#">Nosotros</a>
 								</li>
 							</ul>
 
