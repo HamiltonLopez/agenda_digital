@@ -8,4 +8,5 @@ urlpatterns = [
     path('add/',views.addContact,name='agregar'),
     path('edit/<int:id>',views.editContact,name='editar'),
     path('delete/<int:id>/',views.deleteContact,name='eliminar'),
+    path('filtrar/',views.filtrar,name='filtrar'),
 ]
