@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Contact
 from .form import ContactForm
 from django.contrib import messages
+from django.db.models import Q
 # Create your views here.
 
 def index(request):
@@ -11,8 +12,13 @@ def index(request):
 
 def list(request):
     contacts = Contact.objects.all()
-    return render(request,'contacts/list.html',{'contacts':contacts})
+    return render(request,'contacts/list.html',{'contacts':contacts, 'filtro': ''})
 
+
+def filtrar(request):
+    filtro = request.GET.get('search', '').lower()
+    contacts = Contact.objects.filter( Q(name__icontains=filtro) | Q(phone__icontains=filtro) ) 
+    return render(request,'contacts/list.html', {'contacts':contacts, 'filtro': filtro})
 
 def addContact(request):
     formulario = ContactForm(request.POST or None,request.FILES or 

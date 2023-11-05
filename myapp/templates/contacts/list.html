@@ -18,7 +18,22 @@
 </style>
 <br>
 <h1 class="text-center">LISTA DE CONTACTOS</h1>
-<a href="{% url 'agregar' %}" class="btn btn-success">NUEVO REGISTRO <i class="bi bi-file-earmark-plus"></i></a>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'agregar' %}" class="btn btn-success">NUEVO REGISTRO <i class="bi bi-file-earmark-plus"></i></a>
+        </div>
+        <div class="col">
+            <form method="get" action="{% url 'filtrar' %}">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" value="{{ filtro }}" placeholder="Buscar por nombre o telefono">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success input-group-text" id="basic-addon2" value="Buscar"><i class="bi bi-search"></i></button>
+                    </div>
+                  </div>
+                
+            </form>
+        </div>
+    </div>
 <div class="my-5 text-center">
     <div class="row">
         <div class="col-md-12 text-center">
