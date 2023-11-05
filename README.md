@@ -6,7 +6,7 @@ El objetivo de este proyecto es desarrollar un sistema de gestion de una agenda 
 ### Pre-Requisitos
 
 * Python
-* SQLLite
+* MySQL
 * Django
 
 ### Metodología 
