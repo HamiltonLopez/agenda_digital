@@ -4,6 +4,7 @@ from .models import Contact
 from .form import ContactForm
 from django.contrib import messages
 from django.db.models import Q
+from django.urls import reverse
 # Create your views here.
 
 
@@ -25,9 +26,17 @@ def addContact(request):
     formulario = ContactForm(request.POST or None,request.FILES or 
     None)
     if formulario.is_valid():
-        formulario.save()
-        messages.success(request,  "¡ El contacto fue creado correctamente !")
-        return redirect('lista')
+        numero = request.POST.get('phone', '')
+        try:
+            numero_entero = int(numero)
+            resultado = f"El número ingresado es {numero_entero}"
+            formulario.save()
+            messages.success(request,  "¡ El contacto fue creado correctamente !")
+            return redirect('lista')
+        except ValueError:
+            messages.success(request,  "¡ Debe ingresar un número válido !")
+            return redirect('agregar')    
+        
     return render(request,'contacts/add.html',{'formulario':formulario})
 
 
@@ -35,9 +44,16 @@ def editContact(request,id):
     contact = Contact.objects.get(id=id)
     formulario = ContactForm(request.POST or None,request.FILES or None ,instance=contact)
     if formulario.is_valid() and request.method == 'POST':
-        formulario.save()
-        messages.success(request, "¡ El contacto fue ha actualizado correctamente !")
-        return redirect('lista')
+        numero = request.POST.get('phone','')
+        print(numero)
+        try:
+            numero_entero = int(numero)
+            formulario.save()
+            messages.success(request, "¡ El contacto fue ha actualizado correctamente !")
+            return redirect('lista')
+        except ValueError:
+            messages.success(request,  "¡ Debe ingresar un número válido !")
+            return redirect(reverse('editar', args=[id]))
     return render(request,'contacts/update.html',{'formulario':formulario})
 
 def deleteContact(request,id):

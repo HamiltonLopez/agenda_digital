@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-dark',
     messages.INFO: 'alert-info',
@@ -89,8 +90,7 @@ DATABASES = {
         'NAME': 'contacto',
         'USER': 'root',
         'PASSWORD': '1092454262',
-        'PORT': '3306',
-        
+        'PORT': '3306' 
     }
 }
 

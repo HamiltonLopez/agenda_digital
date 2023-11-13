@@ -11,25 +11,40 @@
     font-weight: bold;
     color: #ffffff;
   }
+  #alert {
+    background-color: #f57979e9; /* Rojo */
+    color: #fff; /* Texto blanco */
+  }
+ 
+
 </style>
 <br>
 <h3 class="text-center">EDITAR CONTACTO</h3>
 <br>
+<div class="col-md-12 text-center">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" id="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {%for campo in formulario %}
   <div class="row align-items-center justify-content-center">
     <div class="form-outline col-4  ">             
       {% if forloop.counter == 1 %}
-      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-person"></i></label></div>          
+      <div class="form-label"><label class="form-label" for="{{ campo.name }}">{{ campo.label }} <i class="bi bi-person"></i></label></div>          
       {% elif forloop.counter == 2 %}
-      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} </label></div> 
+      <div class="form-label"><label class="form-label" for="{{ campo.name }}">{{ campo.label }} </label></div> 
       {% elif forloop.counter == 3 %}
-      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-telephone"></i></label></div> 
+      <div class="form-label"><label class="form-label" for="{{ campo.name }}">{{ campo.label }} <i class="bi bi-telephone"></i></label></div> 
       {% elif forloop.counter == 4 %}
-      <div class="form-label"><label class="form-label" for="nombre">{{ campo.label }} <i class="bi bi-envelope-at"></i></label></div>
+      <div class="form-label"><label class="form-label" for="{{ campo.name }}">{{ campo.label }} <i class="bi bi-envelope-at"></i></label></div>
       {% endif %}
-   <input class="form-control" type="{{ campo.field.widget.input_type }}" id="nombre" name="{{ campo.name }}" placeholder="{{ campo.label }} " value="{{ campo.value | default:'' }}" required><br>
+   <input class="form-control" type="{{ campo.field.widget.input_type }}" id="{{ campo.name }}" name="{{ campo.name }}" placeholder="{{ campo.label }} " value="{{ campo.value | default:'' }}" required><br>
    </div>
   </div>
   <div class="col-12 help-text">{{ campo.errors }}</div>
