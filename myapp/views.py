@@ -11,13 +11,14 @@ def index(request):
 
 
 def list(request):
-    contacts = Contact.objects.all()
+    contacts = Contact.objects.all().order_by('name').values()
+    print(contacts)
     return render(request,'contacts/list.html',{'contacts':contacts, 'filtro': ''})
 
 
 def filtrar(request):
     filtro = request.GET.get('search', '').lower()
-    contacts = Contact.objects.filter( Q(name__icontains=filtro) | Q(phone__icontains=filtro) ) 
+    contacts = Contact.objects.filter( Q(name__icontains=filtro) | Q(phone__icontains=filtro) ).order_by('name').values()
     return render(request,'contacts/list.html', {'contacts':contacts, 'filtro': filtro})
 
 def addContact(request):
