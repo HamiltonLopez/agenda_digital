@@ -35,9 +35,7 @@ def addContact(request):
             return redirect('lista')
         except ValueError:
             messages.success(request,  "¡ Debe ingresar un número válido !")
-            return redirect('agregar')
-
-        
+            return redirect('agregar')    
         
     return render(request,'contacts/add.html',{'formulario':formulario})
 
